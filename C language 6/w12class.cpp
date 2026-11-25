@@ -14,30 +14,30 @@ int main() {
 	{54,44,44},
 	{55,12,34},
 	};
-	int col = -1;//¤ñ¸û¶µ¥Ø
-	int flag = -1;//±Æ§Ç¤èªk
-	int key = 0;//·j´MÅÜ¼Æ
+	int col = -1;//æ¯”è¼ƒé …ç›®
+	int flag = -1;//æ’åºæ–¹æ³•
+	int key = 0;//æœå°‹è®Šæ•¸
 	do
 	{
-		printf("½Ğ¿é¤J¤ñ¸û¶µ¥Ø:(0:¾Ç¸¹, 1:¼Æ¾Ç, 2:­^¤å)");
+		printf("è«‹è¼¸å…¥æ¯”è¼ƒé …ç›®:(0:å­¸è™Ÿ, 1:æ•¸å­¸, 2:è‹±æ–‡)");
 		scanf_s("%d", &col);
 		if (col != 0 && col != 1 && col != 2)
 		{
-			printf("½Ğ¿é¤J²Å¦X±ø¥óªº¼Æ¦r\n");
+			printf("è«‹è¼¸å…¥ç¬¦åˆæ¢ä»¶çš„æ•¸å­—\n");
 		}
 	} while (col != 0 && col != 1 && col != 2);
 	do
 	{
-		printf("½Ğ¿é¤J±Æ§Ç¤èªk:(¤j¨ì¤p±Æ¦C:0,¤p¨ì¤j±Æ¦C:1)");
+		printf("è«‹è¼¸å…¥æ’åºæ–¹æ³•:(å¤§åˆ°å°æ’åˆ—:0,å°åˆ°å¤§æ’åˆ—:1)");
 		scanf_s("%d", &flag);
 		if (flag != 0 && flag != 1)
 		{
-			printf("½Ğ¿é¤J²Å¦X±ø¥óªº¼Æ¦r\n");
+			printf("è«‹è¼¸å…¥ç¬¦åˆæ¢ä»¶çš„æ•¸å­—\n");
 		}
 	} while (flag != 0 && flag != 1);
-	printf("½Ğ¿é¤J­n·j´Mªº¾Ç¸¹©Î¦¨ÁZ");
+	printf("è«‹è¼¸å…¥è¦æœå°‹çš„å­¸è™Ÿæˆ–æˆç¸¾");
 	scanf_s("%d", &key);
-	printf("\n­ì©l¦¨ÁZ:\n");
+	printf("\nåŸå§‹æˆç¸¾:\n");
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -46,8 +46,8 @@ int main() {
 		}
 		printf("\n");
 	}
-	sort_array(data, 10, flag, col);//±Æ§Ç
-	printf("\n±Æ§Ç«á¦¨ÁZ:\n");
+	sort_array(data, 10, flag, col);//æ’åº
+	printf("\næ’åºå¾Œæˆç¸¾:\n");
 	for (int i = 0; i < 10; ++i) {
 		for (int j = 0; j < 3; j++)
 		{
@@ -55,14 +55,14 @@ int main() {
 		}
 		printf("\n");
 	}
-	int index = binary_search(data, key, 0, 9, col, flag);//·j´M
+	int index = binary_search(data, key, 0, 9, col, flag);//æœå°‹
 	if (index == -1)
 	{
-		printf("¨S§ä¨ì\n");
+		printf("æ²’æ‰¾åˆ°\n");
 	}
 	else
 	{
-		printf("¸Ó¾Ç¥Í¬°:");
+		printf("è©²å­¸ç”Ÿç‚º:");
 		for (int j = 0; j < 3; j++)
 		{
 			printf("%4d", data[index][j]);
@@ -120,13 +120,14 @@ int binary_search(int a[][3], int key, int low, int high, int col,int flag) {
 	}
 	return -1;
 }
-int binary_search(int a[][3], int key, int low, int high, int col, int flag) {//col ¤ñ¸û¶µ¥Ø,flag ±Æ§Ç¤èªk,key ´M§ä¥Ø¼Ğ
+//éè¿´å¯«æ³•
+int binary_search(int a[][3], int key, int low, int high, int col, int flag) {//col æ¯”è¼ƒé …ç›®,flag æ’åºæ–¹æ³•,key å°‹æ‰¾ç›®æ¨™
 	if (low > high) 
 		return -1;
 	int mid = (low + high) / 2;
 	if (a[mid][col] == key) 
 		return mid;
-	if (flag == 1) { // ¤p¨ì¤j
+	if (flag == 1) { // å°åˆ°å¤§
 		if (a[mid][col] > key) {
 			return binary_search(a, key, low, mid - 1, col, flag);
 		}
@@ -134,7 +135,7 @@ int binary_search(int a[][3], int key, int low, int high, int col, int flag) {//
 			return binary_search(a, key, mid + 1, high, col, flag);
 		}
 	}
-	else { // ¤j¨ì¤p
+	else { // å¤§åˆ°å°
 		if (a[mid][col] > key) {
 			return binary_search(a, key, mid + 1, high, col, flag);
 		}
